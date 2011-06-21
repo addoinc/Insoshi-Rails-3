@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  forum: one
+  person: quentin
+  name: foobar
+  forum_posts_count: 1
+
+two:
+  forum: one
+  person: quentin
+  name: bazquux
+  forum_posts_count: 1

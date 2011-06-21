@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+forum:
+  topic: one
+  person: quentin
+  body: MyText
+  type: ForumPost
+
+forum_2:
+  topic: two
+  person: aaron
+  body: FooBar
+  type: ForumPost
+
+blog_post:
+  blog: one
+  person_id: quentin
+  body: MyText
+  type: BlogPost

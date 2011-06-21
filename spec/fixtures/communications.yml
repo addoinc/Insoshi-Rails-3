@@ -1,0 +1,36 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+sent_to_aaron:
+  subject: The subject
+  content: Lorem ipsum dolor sit amet
+  sender: quentin
+  recipient: aaron
+  type: Message
+  conversation_id: 1
+  created_at: <%= 2.days.ago.to_s :db %>
+
+sent_to_quentin:
+  subject: The subject
+  content: Dude!
+  sender: aaron
+  recipient: quentin
+  type: Message
+  conversation_id: 1
+  created_at: <%= 1.day.ago.to_s :db %>
+
+sent_to_quentin_from_kelly_and_trashed:
+  subject: The subject
+  content: ZOMG!!!
+  sender: kelly
+  recipient: quentin
+  recipient_deleted_at: <%= 1.day.ago.to_s :db %>
+  type: Message
+  conversation_id: 2
+
+really_old:
+  subject: The subject
+  content: Today we went to hear Socrates speak
+  sender: quentin
+  recipient: aaron
+  recipient_deleted_at: <%= (Person::TRASH_TIME_AGO - 1.year).to_s :db %>
+  type: Message
