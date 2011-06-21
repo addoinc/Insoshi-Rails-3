@@ -1,0 +1,21 @@
+<%- column_div :type => :primary do -%>
+  <h2>Edit gallery</h2>
+
+  <%- form_for(@gallery) do |f| -%>
+    <div class="form_row">
+    <%= f.label :title %>
+      <%= f.text_field :title%>
+  </div>
+
+    <div class="form_row">
+    <%= f.label :description %>
+    <p><%= formatting_note %></p>
+    <%= f.text_area :description, :rows => 5 %>
+  </div>
+
+    <div class="form_row">
+      <%= f.submit "Update", :class => 'button' %>
+      <%= link_to "Cancel", @gallery, :class => "button" %>
+  </div>
+  <%- end -%>
+<%- end -%>

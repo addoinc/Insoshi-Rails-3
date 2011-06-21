@@ -1,0 +1,39 @@
+<%- column_div :type => :primary do -%>
+
+  <h2>
+  <%= link_to "Blog for #{h @blog.person.name}", blog_tab_path(@blog) %>
+  </h2>
+
+  <ul class="list blog full">
+    <%= render :partial => 'posts/blog_post', :object => @post %>
+  </ul>
+
+  <%- unless @post.comments.empty? -%>
+  <h4 id="comments">Comments</h4>
+    <ul class="list comments full">
+      <%= render :partial => 'comment', :collection => @post.comments %>
+    </ul>
+  <%- end -%>
+
+  <%- if logged_in? -%>
+    <h4>Leave a comment</h4>
+
+    <p><%= formatting_note %></p>
+
+    <% form_for :comment, :url => blog_post_comments_path(@blog, @post),
+                          :html => { :id => "blogcomment" } do |f| %>
+      <div class="form_row">
+        <%= f.text_area :body, :rows => 10 %>
+      </div>
+  
+      <div class="form_row">
+        <%= submit_tag "Submit", :class => "button" %>
+      </div>
+    <% end %>
+
+  <%- end -%>
+<%- end -%>
+
+  <%- column_div :type => :secondary do -%>
+    <%= render :partial => 'shared/minifeed' %>
+  <%- end -%>

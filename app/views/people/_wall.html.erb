@@ -1,0 +1,29 @@
+<h2><%= @person.name %>'s Comment Wall</h2>
+<a name="wall"></a>
+<%- if connected_to?(@person) -%>
+  <p><%= formatting_note.html_safe %></p>  
+  <%= form_for :comment, :url => person_comments_path(@person) do |f| %>
+      <div class="form_row">
+        <%= f.text_area :body, :rows => 2, :cols => 80 %>
+      </div>
+      <div class="form_row">
+        <%= submit_tag "Submit", :class => "button" %>
+      </div>
+  <% end %>
+<%- else -%>
+  <p>
+  You must be connected to <%= h @person.name %> to leave a wall comment.
+  </p>
+  <p>
+  <%= link_to "Connect with #{h @person.name} now",
+              person_connections_path(@person), :method => :post %>
+  </p>
+<%- end -%>
+
+
+<%- unless @person.comments.empty? -%>
+  <ul class="list comments full">
+    <%= render :partial => 'comment', :collection => @person.comments %>
+  </ul>
+<%- end -%>
+

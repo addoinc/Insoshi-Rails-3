@@ -1,0 +1,26 @@
+<li class="post">
+  <h3> 
+    <a name="post_<%= blog_post.id %>"></a>
+    <%= link_to sanitize(blog_post.title),
+                blog_post_path(@blog, blog_post),
+                :class => "show-follow" %>
+    <%- if current_person?(@blog.person) -%>
+      <%= link_to image_tag("icons/page_white_edit.png",
+                            :class => 'actioner'),
+                  edit_blog_post_path(@blog, blog_post) %>
+      <%= link_to image_tag("icons/page_white_delete.png",
+                            :class => 'actioner'),
+                  blog_post_path(@blog, blog_post),
+                  :method => :delete,
+                  :confirm => "Delete this post?" %>
+    <%- end -%>
+  </h3>
+  <%= display blog_post.body %>
+  <p class="meta">
+    Posted <%= time_ago_in_words(blog_post.created_at) %> ago | 
+    <%- n = blog_post.comments.count -%>
+    <%= link_to pluralize(n, "comment"),
+                blog_post_path(@blog, blog_post, :comments => n),
+                :class => "show-follow" %>    
+  </p>
+</li>

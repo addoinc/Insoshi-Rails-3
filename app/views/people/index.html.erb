@@ -1,0 +1,15 @@
+<%- column_div :type => :primary do -%>
+  <% unless @people.empty? -%>
+    <h2>People</h2>
+    <%= will_paginate %>
+    <ul class="list people">
+      <%= render :partial => @people %>
+    </ul>
+    <%= will_paginate %>
+  <% end -%>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

@@ -1,0 +1,22 @@
+<%- column_div :type => :primary do -%>
+
+
+  <% if @photo.title.nil?%>
+    <h2>Photo</h2>
+  <%- else -%>
+    <h2><%= h(@photo.title)%></h2>
+  <% end %>
+
+
+  <p><%= link_to "Go to gallery", gallery_path(@photo.gallery) %></p>
+  
+  <div class = "photo">
+    <%= image_tag(@photo.public_filename) %>
+  </div>
+<% end %>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end-%>
+  
+  

@@ -1,0 +1,91 @@
+<%- column_div :type => :primary do -%>
+  <h2>Edit Your Profile</h2>
+
+  <div id="profile_edit">
+    <%= error_messages_for :person %>
+    <% form_for @person do |f| %>
+      <div class="form_row">
+        <%= f.label :name %>
+        <%= f.text_field :name, :maxlength => Person::MAX_NAME %>
+      </div>
+      
+      <div class="form_row">
+        <%= f.label :email %>
+        <%= f.text_field :email, :maxlength => Person::MAX_EMAIL %>
+      </div>
+      
+    <h3>Public Description</h3>
+      <p class="meta">This is what other users of the system see as your 
+        description.</p>
+      <div class="form_row">
+        <p><%= formatting_note %></p>
+        <%= f.text_area :description  %>
+      </div>
+
+      <%- if global_prefs.email_notifications? -%>
+        <a name="email_prefs"></a>
+        <h3>Email Notification Preferences</h3>
+
+        <p class="meta">Get emails when these events occur</p>
+
+        <div class="form_row">
+          <p>
+            <%= f.label :connection_notifications, 'Connections', 
+              :class => "checkbox" %>
+            <%= f.check_box :connection_notifications, {}, 'true', 'false' %>
+          </p>
+          <p>
+            <%= f.label :message_notifications, 'Messages', 
+              :class => "checkbox" %>
+            <%= f.check_box :message_notifications, {}, 'true', 'false' %>
+          </p>
+          <p>
+            <%= f.label :wall_comment_notifications, 'Wall Comments', 
+              :class => "checkbox" %>
+            <%= f.check_box :wall_comment_notifications,
+                            {}, 'true', 'false' %>
+          </p>
+          <p>
+            <%= f.label :blog_comment_notifications, 'Blog Comments', 
+                                                     :class => "checkbox" %>
+            <%= f.check_box :blog_comment_notifications,
+                            {}, 'true', 'false' %>
+          </p>
+        </div>
+      <%- end -%>
+
+  
+      <div class="form_row">
+        <%= f.submit "Update", :class => "button" %>
+        <%= link_to "Cancel", @person %>
+        <input type="hidden" name="type" value="info_edit" />
+      </div>
+  <% end %>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <h2>Change Your Password</h2>
+
+  <% form_for @person, :html => { :id => "change_password" } do |f| %>
+    <div class="form_row">
+      <%= label :person, :verify_password, "Current Password" %>
+      <%= f.password_field :verify_password, :size => 34, :maxlength => Person::MAX_PASSWORD %>
+    </div>
+
+    <div class="form_row">
+      <%= label :person, :new_password %>
+      <%= f.password_field :new_password, :size => 34, :maxlength => Person::MAX_PASSWORD %>
+    </div>
+
+    <div class="form_row">
+      <%= label :person, :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation,  :size => 34, :maxlength => Person::MAX_PASSWORD, :value => "" %>
+    </div>
+
+    <div class="form_row">
+      <%= submit_tag 'Change password', :class => "button" %>
+      <input type="hidden" name="type" value="password_edit" />
+    </div>
+  <% end %>
+<%- end -%>

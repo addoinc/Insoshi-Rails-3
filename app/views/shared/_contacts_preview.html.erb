@@ -1,0 +1,11 @@
+<%- unless @some_contacts.empty? -%>
+  <h2>Contacts</h2>
+  <ul class="grid contacts small">
+    <%- @some_contacts.each do |contact| -%>
+    <%= render :partial => 'shared/contact', :locals => {:contact => contact} %>
+    <%- end -%>
+    <li class="more">
+      <%= link_to "All contacts &raquo;", person_connections_path(person) %>
+    </li>
+  </ul>
+<%- end -%>

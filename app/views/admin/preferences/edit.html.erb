@@ -1,0 +1,83 @@
+<%- column_div :type => :primary do -%>
+  <h2>Edit Global Preferences</h2>
+
+  <%= error_messages_for :preferences %>
+
+  <% form_for :preferences,
+              :url => admin_preference_path(@preferences),
+              :html => { :method => :put, :id => 'admin_preferences' } do |f| %>
+              
+    <div class="form_row">
+      <%= f.label :app_name, 'Application Name' %>
+      <%= f.text_field :app_name %>
+    </div>
+    
+    <div class="form_row">
+      <%= f.label :domain, 'Email Domain' %>
+      <%= f.text_field :domain %>
+    </div>
+
+    <div class="form_row">
+      <%= f.label :server_name, 'Server Name' %>
+      <%= f.text_field :server_name %>
+    </div>
+
+    <div class="form_row">
+      <%= f.label :smtp_server, 'SMTP Server' %>
+      <%= f.text_field :smtp_server %>
+    </div>
+
+    <div class="form_row">
+      <%= f.label :email_notifications, 'Send Notices', :class => 'checkbox' %>
+      <%= f.check_box :email_notifications %>
+    </div>
+    <p class="meta">Send email when messages, connection requests, etc., are sent</p>
+
+    <div class="form_row">
+      <%= f.label :demo, 'Demo Site', :class => 'checkbox' %>
+      <%= f.check_box :demo %>
+    </div>
+    <p class="meta">Display a note to explain that this site is just a demonstration</p>  
+
+    <br />
+
+    <p>Register new people in a deactivated state until whitelisted</p>
+    <div class="form_row">
+      <label for="whitelist"
+             class="checkbox">Whitelist</label>
+      <%= f.check_box :whitelist %>
+    </div>
+
+    <br />
+
+    <p>Verify email for new registrations using an activation code</p>
+    <div class="form_row">
+      <%= f.label :email_verifications, 'Verification Emails', :class => 'checkbox' %>
+      <%= f.check_box :email_verifications %>
+    </div>
+    <p class="meta">Send email to new users containing an activation code</p>  
+
+    <div class="form_row">
+      <%= f.label :about %>
+      <p><%= formatting_note %></p>
+      <%= f.text_area :about, :rows => 10 %>
+    </div>
+  <br />
+    
+    <p class="meta">Keep this short to fit the 146px width</p>  
+    
+    <br />
+
+    <div class="form_row">
+      <%= f.label :analytics %>
+      <br />
+      <%= f.text_area :analytics, :rows => 10 %>
+    </div>
+  <p class="meta">Code will be inserted just before the &lt;/body&gt; tag</p>
+
+    <div class="form_row">
+      <%= f.submit "Update", :class => "button" %>
+      <%= link_to "Cancel", admin_preferences_path %>
+    </div>
+  <% end %>
+<%- end -%>

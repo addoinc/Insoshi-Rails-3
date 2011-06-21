@@ -1,0 +1,19 @@
+<%- column_div :type => :primary do -%>
+  <h2>Messages</h2>
+
+  <%= render :partial => 'message_nav' %>
+  
+  <%- if @messages.empty? -%>
+    <h3 class="blankslate">No messages (yet!)</h3>
+  <%- else -%>
+  <%=  will_paginate %>
+    <ul class="list messages full">
+      <%= render :partial => @messages %>
+    </ul>
+    <%= will_paginate %>
+  <%- end -%>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+<%- end -%>

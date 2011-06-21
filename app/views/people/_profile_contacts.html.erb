@@ -1,0 +1,17 @@
+<%- column_div :type => :primary do -%>
+  <h2><%= @person.name %>'s Contacts</h2>
+  <% if @person.connections.count > Person::MAX_DEFAULT_CONTACTS %>
+    <div class='button see_all_link'>
+      <%= link_to "See All Contacts", person_connections_path(@person) %>
+    </div>
+  <% end %>
+  <%= render :partial => 'shared/contacts_grid',
+             :locals => { :contacts => @person.some_contacts } %>
+  <%= render :partial => 'common_contacts' %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+<%- end -%>
+
+<div class="clear"></div>

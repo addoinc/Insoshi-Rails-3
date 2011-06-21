@@ -1,0 +1,17 @@
+<div>
+  <div id="debug">
+    <a href="#" onclick="jQuery('#env_debug_info').toggle();return false">
+    env</a> |
+    <a href="#" onclick="jQuery('#request_debug_info').toggle();return false">
+    request</a>
+    <fieldset id="env_debug_info" class="debug_info" style="display: none">
+      <legend>env</legend>
+      <%= debug(request.env) %>
+    </fieldset>
+    <fieldset id="request_debug_info" class="debug_info" 
+              style="display: none">
+      <legend>request</legend>
+      <%= debug(request) %>
+    </fieldset>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+
+<h2>Add a Photo</h2>
+<%= error_messages_for :photo %>
+
+<h3>Select New Image</h3>
+<%= form_for @photo,:url=>{:controller => :photos, :action => :create, :gallery_id => @gallery}, :html => { :multipart => true } do |f| -%>
+
+  <div class="form_field">
+    <%#= f.file_field :image %>
+    <%= f.file_field :uploaded_data %>
+  </div>
+  <div class="form_field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form_field">
+    <%= submit_tag 'Upload', :class => 'button' %>
+    <%= link_to 'Cancel', @gallery, :class => "button", :id => "cancel" %>
+  </div>
+<% end -%>

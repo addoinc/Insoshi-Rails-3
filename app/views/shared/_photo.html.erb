@@ -1,0 +1,30 @@
+<li>
+  <div class='gallPhotoTitle'>
+    <%= link_to photo.label, '#gpu' + photo_id(photo), :rel => 'facebox' %>
+    <div style="display: none;" id="gpu<%= photo_id(photo) -%>">
+      <%= image_tag photo.public_filename %> 
+      <div class="gpuTitle"><%= photo.label %></div>
+    </div>
+  </div>
+  <div class='gallPhoto'>
+    <%= link_to image_tag(photo.image.url(:thumbnail)),
+                '#gpu' + photo_id(photo), :rel => 'facebox' %>
+  </div>
+  <%- if current_user?(photo.user) -%>
+  <div class='gallPhotoMeta'>
+      <%= link_to image_tag("icons/picture_edit.png", :class => 'actioner'), 
+                  edit_photo_path(photo),
+                  :title => "Edit photo" %>
+      <%= link_to image_tag("icons/picture_delete.png", :class => 'actioner'), 
+        photo_path(photo), :method => :delete,
+        :confirm => 'Really delete this photo?',
+         :title => 'Delete photo' %>
+      <%= link_to image_tag("default_thumbnail.png", :class => 'actioner', 
+        :style => 'height: 16px;'), set_avatar_photo_path(photo), 
+        :method => :put, :title => 'Select as your profile photo' %>
+      <%= link_to image_tag("icons/photo.png", :class => 'actioner', 
+        :style => 'height: 16px;'), set_primary_photo_path(photo), 
+        :method => :put, :title => 'Select as gallery thumbnail' %>
+  </div>
+  <%- end -%>
+</li>

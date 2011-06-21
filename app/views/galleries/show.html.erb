@@ -1,0 +1,28 @@
+<div id="photos">
+  <h2>Photos in <%= h(@gallery.title) %> Gallery</h2>
+    <% unless @gallery.description.nil? %>
+    <div class="gallery-description">
+      <%- unless @gallery.description.blank? -%>
+      <p><strong>Description:</strong> <%= @gallery.description %></p>
+      <%- end -%>
+    </div>
+    <% end %>
+  
+    <p>
+      <% if current_person?(@gallery.person)%>
+        <%= link_to "Add photo", new_gallery_photo_path(@gallery) %> |
+        <%= link_to "Edit gallery", edit_gallery_path %> |
+      <% end %>
+      <%= link_to "All galleries", person_path(@gallery.person,
+                                   :anchor => 'tGalleries') %>
+    </p>
+  
+    <%- if @photos.empty? -%>
+    <h3>No photos (yet)
+    <%- else -%>
+      <ul>
+        <%= render :partial=>"shared/photo", :collection => @photos %>
+      </ul>
+      <%= will_paginate(@photos) %>
+    <%- end -%>
+</div>

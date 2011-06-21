@@ -1,0 +1,42 @@
+<div id="profile" style="display: none;">
+  <%= tabs_for(:id => 'tabCol') do |tabs| %>
+    <% tabs.create('tProfile', 'Profile', :class => "profile vcard") do %>
+      <%= render :partial => 'profile' %>
+      <div class="clear"></div>
+    <% end %>
+
+    <% tabs.create('tWall', 'Wall') do %>
+      <%= render :partial => 'wall' %>
+      <div class="clear"></div>
+    <% end %>
+
+    <% tabs.create('tRecentActivity', 'Recent Activity') do %>
+      <%= render :partial => 'recent_activity' %>
+      <div class="clear"></div>
+    <% end %>
+
+    <% tabs.create('tContacts', 'Contacts') do %>
+      <%= render :partial => 'profile_contacts' %>
+      <div class="clear"></div>
+    <% end %>
+
+    <% tabs.create('tBlog', 'Blog') do %>
+      <%= render :partial => 'shared/blog' %>
+      <div class="clear"></div>
+    <% end %>
+
+    <% tabs.create('tGalleries', 'Galleries') do %>
+      <%= render :partial => "shared/galleries",
+                 :locals => { :galleries => @galleries } %>
+      <div class="clear"></div>
+    <% end %>
+  <% end %>
+
+</div>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    // Set up the tabs.
+    $("#tabCol > ul").tabs();
+    $("#profile").show();
+  })
+</script>

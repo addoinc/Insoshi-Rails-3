@@ -1,0 +1,19 @@
+<li>
+  <div class="profile-image">
+    <%= image_link(comment.commenter, :image => :thumbnail) %>
+  </div>
+  <p class="meta published">
+    <%= person_link comment.commenter %> said
+    <%= time_ago_in_words(comment.created_at) %> ago
+    <%- if (current_person?(comment.commentable) or
+            current_person?(comment.commenter)) -%>
+      <%= link_to image_tag("icons/comment_delete.png", :class => 'actioner'), 
+                  person_comment_path(@person, comment),
+                  :method => :delete,
+                  :confirm => 'Delete this wall comment?',
+                  :title => 'Delete wall comment' %>
+    <%- end -%>  
+  </p>
+  <%= display comment.body %>
+  <div class="clear"></div>
+</li>

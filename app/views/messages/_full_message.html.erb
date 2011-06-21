@@ -1,0 +1,25 @@
+<li class="vcard person">
+  <%- if n_messages > 1 -%>
+    <a name="<%= message_anchor(full_message) %>"></a>
+  <%- end -%>
+  <div class="profile-image">
+  <%= image_link full_message.sender, :class => "photo",
+                                      :image => :thumbnail %>
+  </div>
+  <%= display full_message.content %>
+  <p class="meta tools">
+    <%= link_to image_tag("icons/email_edit.png", :class => 'actioner'), 
+                reply_message_path(@message),
+                :title => "Reply to this message" %>
+    <% unless @message.trashed?(current_person) -%>
+      <%= link_to image_tag("icons/email_delete.png", :class => 'actioner'), 
+                  @message,
+                  :method => :delete, 
+                  :confirm => %(Delete this message?),
+                  :title => "Delete this message" %>
+    <% else -%>
+      <%= link_to "Untrash", undestroy_message_path(@message), 
+                             :method => :put %>
+    <% end -%>
+  </p>
+</li>
